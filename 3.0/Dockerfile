@@ -1,14 +1,27 @@
 FROM alpine:3.3
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN addgroup -S redis && adduser -S -G redis redis
-
-# grab su-exec for easy step-down from root
-RUN apk add --no-cache 'su-exec>=0.2'
-
+# ENV
 ENV REDIS_VERSION 3.0.7
 ENV REDIS_DOWNLOAD_URL http://download.redis.io/releases/redis-3.0.7.tar.gz
 ENV REDIS_DOWNLOAD_SHA1 e56b4b7e033ae8dbf311f9191cf6fdf3ae974d1c
+
+# add redis user and group (addgroup -g 200 -S redis)
+RUN sed -i -r 's/nofiles/redis/' /etc/group && \
+    adduser -u 200 -D -S -G redis redis
+
+# grab su-exec for easy step-down from root
+RUN apk add --no-cache 'su-exec>=0.2' 
+
+# change timezone to Asia/Shanghai
+RUN apk add --no-cache tzdata && \
+    cp  /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime && \
+    echo "Asia/Shanghai" >  /etc/timezone && \
+    apk del --no-cache tzdata
+
+# add bash and libc6-compat
+RUN apk add --no-cache bash libc6-compat && \
+    ln -s /lib /lib64 && \
+    sed -i -e "s/bin\/ash/bin\/bash/" /etc/passwd
 
 # for redis-sentinel see: http://redis.io/topics/sentinel
 RUN set -x \
