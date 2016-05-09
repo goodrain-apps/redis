@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /tmp/bin/env
+
 case ${MEMORY_SIZE:-micro} in
     "micro")
        export CFG_MAXMEMORY="96mb"
