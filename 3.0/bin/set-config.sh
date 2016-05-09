@@ -39,6 +39,25 @@ case ${MEMORY_SIZE:-micro} in
        ;;
 esac
 
-function set-config() {
+function set_config() {
+    CFG=($(env | sed -nr "s/CFG_([0-9A-Z_a-z-]*)/\L\1/p"))
 
+    for CFG_KEY in "${CFG[@]}"; do
+        KEY=`echo $CFG_KEY | cut -d = -f 1`
+        VAR=`echo $CFG_KEY | cut -d = -f 2`
+        if [ "$VAR" == "" ]; then
+            echo "Empty volue for option \"$KEY\"."
+            continue
+        fi
+        grep -q "$KEY" $CONFIG_FILE
+        if (($? > 0)); then
+            echo "${KEY}${DELIMITER}${VAR}" >> $CONFIG_FILE
+            echo "Config add option for \"$KEY\"."
+        else
+            sed -i -r "s~(#?$KEY)[ ]*${DELIMITER}.*~\1 ${DELIMITER} $VAR~g" $CONFIG_FILE
+            echo "Option found for \"$KEY\"."
+        fi
+    done
 }
+
+set_config
