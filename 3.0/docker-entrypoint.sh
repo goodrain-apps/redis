@@ -2,6 +2,8 @@
 
 [ $DEBUG ] && set -x
 
+source /tmp/bin/set_config_file.sh
+
 set -e
 
 # allow the container to be started with `--user`
