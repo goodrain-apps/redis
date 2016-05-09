@@ -56,7 +56,7 @@ function set_config() {
             echo "${KEY}${DELIMITER}${VAR}" >> $CONFIG_FILE
             echo "Config add option for \"$KEY\"."
         else
-            sed -i -r "s~(#?$KEY)[ ]*${DELIMITER}.*~\1 ${DELIMITER} $VAR~g" $CONFIG_FILE
+            sed -i -r "s~(#?$KEY)[ ]*${DELIMITER}.*~\1 ${DELIMITER} $VAR~g" $CONFIG_FILE 2>&1 >/dev/null
             echo "Option found for \"$KEY\"."
         fi
     done
