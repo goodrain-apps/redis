@@ -10,7 +10,7 @@ RUN sed -i -r 's/nofiles/redis/' /etc/group && \
     adduser -u 200 -D -S -G redis redis
 
 # grab su-exec for easy step-down from root
-RUN apk add --no-cache 'su-exec>=0.2' 
+RUN apk add --no-cache 'su-exec>=0.2' curl
 
 # change timezone to Asia/Shanghai
 RUN apk add --no-cache tzdata && \
