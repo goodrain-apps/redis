@@ -54,4 +54,4 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 6379
-CMD [ "redis-server /etc/redis/redis.conf" ]
+CMD [ "redis-server","/etc/redis/redis.conf" ]
