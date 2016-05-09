@@ -42,7 +42,7 @@ case ${MEMORY_SIZE:-micro} in
 esac
 
 function set_config() {
-    CFG=($(env | sed -nr "s/CFG_([0-9A-Z_a-z-]*)/\L\1/p"))
+    CFG=($(env | sed -nr "s/CFG_([0-9A-Z_a-z-]*)/\1/p"|tr A-Z a-z))
 
     for CFG_KEY in "${CFG[@]}"; do
         KEY=`echo $CFG_KEY | cut -d = -f 1`
