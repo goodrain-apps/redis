@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+
+[ $DEBUG ] && set -x
+
 set -e
 
 # allow the container to be started with `--user`
