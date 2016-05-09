@@ -43,6 +43,7 @@ RUN set -x \
 
 RUN mkdir /data && chown redis:redis /data
 VOLUME /data
+WORKDIR /data
 
 COPY 3.0/bin /tmp/bin
 COPY 3.0/etc /etc
