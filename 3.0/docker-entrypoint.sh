@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "set redis config"
+chmod +x /usr/bin/env2config
+env2config config -f /usr/local/etc/redis/redis.conf
+
 [ $DEBUG ] && set -x
 
 source /tmp/bin/set_config_file.sh
