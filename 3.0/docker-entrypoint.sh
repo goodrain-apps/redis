@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "set redis config"
-sed -i "s/REDIS_PASS/${REDIS_PASS}/g" /usr/local/etc/redis/redis.conf
+sed -i "s/REDIS_PASS/${REDIS_PASS}/g" /etc/redis/redis.conf
 
 [ $DEBUG ] && set -x
 
