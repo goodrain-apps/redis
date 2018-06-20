@@ -4,6 +4,7 @@ FROM alpine:3.3
 ENV REDIS_VERSION 3.0.7
 ENV REDIS_DOWNLOAD_URL http://download.redis.io/releases/redis-3.0.7.tar.gz
 ENV REDIS_DOWNLOAD_SHA1 e56b4b7e033ae8dbf311f9191cf6fdf3ae974d1c
+ENV REDIS_PASS=123456
 
 # add redis user and group (addgroup -g 200 -S redis)
 RUN sed -i -r 's/nofiles/redis/' /etc/group && \
@@ -41,7 +42,8 @@ RUN set -x \
 	&& rm -r /usr/src/redis \
 	&& apk del .build-deps
 
-RUN mkdir /data && chown redis:redis /data
+RUN mkdir /data && chown redis:redis /data \
+    && get http://rainbond-pkg.oss-cn-shanghai.aliyuncs.com/env2config -O /usr/bin/env2config
 VOLUME /data
 WORKDIR /data
 
