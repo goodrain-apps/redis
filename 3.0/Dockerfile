@@ -42,8 +42,7 @@ RUN set -x \
 	&& rm -r /usr/src/redis \
 	&& apk del .build-deps
 
-RUN mkdir /data && chown redis:redis /data \
-    && get http://rainbond-pkg.oss-cn-shanghai.aliyuncs.com/env2config -O /usr/bin/env2config
+RUN mkdir /data && chown redis:redis /data
 VOLUME /data
 WORKDIR /data
 
