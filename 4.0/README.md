@@ -1,5 +1,5 @@
 
-## Redis Version:4.0 
+## Redis Version:4.0.9
 是一款开源的，基于 BSD 许可的，高级键值 (key-value) 缓存 (cache) 和存储 (store) 系统。
 由于 Redis 的键包括 string、hash、list、set、sorted set、bitmap 和 hyperloglog，所以常常被称为数据结构服务器。
 你可以在这些类型上面运行原子操作，例如追加字符串、增加哈希中的值、加入一个元素到列表、计算集合的交集、并集和差集，或者是从有序集合中获取最高排名的元素。
@@ -7,6 +7,22 @@
 根据你的使用场景，可以通过每隔一段时间转储数据集到磁盘或者追加每条命令到日志来持久化。如果你只是需要一个功能丰富、网络化的内存缓存，持久化也可以被禁用。
 Redis 还支持主从异步复制，非常快的非阻塞初次同步、网络断开时自动重连局部重同步。
 Redis 是一个高性能的 key-value 数据库。Redis 的出现，很大程度补偿了 memcached 这类 key-value 存储的不足，在部分场合可以对关系数据库起到很好的补充作用。它提供了 Python，Ruby，Erlang，PHP 客户端，使用很方便。
+
+### 版本更新说明
+#### Bug 修复
+
+* Latency monitor could report wrong latencies under certain conditions.
+* AOF rewriting could fail when a backgronud rewrite is triggered and at the same time the AOF is switched on/off.
+* Redis Cluster crash-recovery safety improved.
+* Other smaller fixes (check commnits).
+
+#### 新特性
+
+* Redis Cluster has now the ability to configure certain slaves so that they'll never attempt a failover.
+* Keyspace notifications API in modules.
+* RM_Call() is now faster by reusing the same client.
+* Tracking of the percentage of keys already logically expired but yet not evicted.
+* Other smaller improvements (check commits)
 
 ### 环境变量配置说明
 
