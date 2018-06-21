@@ -1,4 +1,4 @@
-# Dockerfile for Redis
+
 
 ## Redis Version:3.2.11 
 是一款开源的，基于 BSD 许可的，高级键值 (key-value) 缓存 (cache) 和存储 (store) 系统。
@@ -8,6 +8,17 @@
 根据你的使用场景，可以通过每隔一段时间转储数据集到磁盘或者追加每条命令到日志来持久化。如果你只是需要一个功能丰富、网络化的内存缓存，持久化也可以被禁用。
 Redis 还支持主从异步复制，非常快的非阻塞初次同步、网络断开时自动重连局部重同步。
 
+### 版本更新说明
+Upgrade urgency HIGH: Potentially critical bugs fixed.
+
+AOF flush on SHUTDOWN did not cared to really write the AOF buffers
+(not in the kernel but in the Redis process memory) to disk before exiting.
+Calling SHUTDOWN during traffic resulted into not every operation to be
+persisted on disk.
+
+Oran Agra (and also Buğra Gedik) in commit 8651e5d5:
+ Flush append only buffers before existing.
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 ### 环境变量配置说明
 
