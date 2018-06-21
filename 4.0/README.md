@@ -33,6 +33,10 @@ Redis 是一个高性能的 key-value 数据库。Redis 的出现，很大程度
 * DBFILENAME    
 
   本地持久化数据库文件名
+  
+* MAXCLIENTS
+
+  客户端最大连接数
 
 * TIMEOUT    
 
