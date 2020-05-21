@@ -3,7 +3,7 @@ RUN apk add --no-cache bash tzdata
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
        echo "Asia/Shanghai" >  /etc/timezone && \
        apk del --no-cache tzdata && \
-       wget http://rainbond-pkg.oss-cn-shanghai.aliyuncs.com/env2config -O /usr/bin/env2config
+       wget https://github.com/barnettZQG/env2file/releases/download/0.1.1/env2file-linux -O /usr/bin/env2config
 COPY redis.conf /usr/local/etc/redis/redis.conf
 EXPOSE  6379
 ENV PORT=6379
