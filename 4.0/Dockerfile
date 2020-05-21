@@ -1,5 +1,5 @@
 FROM redis:4-alpine
-RUN apk update && apk add --no-cahce bash tzdata
+RUN apk add --no-cache bash tzdata
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
        echo "Asia/Shanghai" >  /etc/timezone && \
        apk del --no-cache tzdata && \
